@@ -1,32 +1,41 @@
-# HW4 FFmpeg
+# HW4 EC500
+By: Ruby Zaveri
 
-# Overview
-Use FFmpeg to re-encode a video file (MOV, or MP4) to two bitrates:
-- 720p at 2Mbps and 30fps
-- 480p at 1Mbps and 30fps
+## Main Exercise
+Using the twitter feed, construct a daily video summarizing a twitter handle's day.
+- Convert text into an image in a frame
+- Do a sequence of all texts and images in chronological order.
+- Display each video frame for 3 seconds
 
-Display each video frame for 3 seconds
+## Tasks
+Establish a processing criteria:
+- How many API calls you can handle simultaneously and why?
+- For example, run different API calls at the same time?
+- Split the processing of an API into multiple threads?
 
-# Assignment Goal
-- use a twitter feed, construct a daily video summarizing a twitter handle's day.
-  - convert text into an image in a frame.
-  do a sequence of all texts and images in chronological order
-  display each video frame for 3 seconds.
-- build a scheduling system so that whenever someone calls the API - tells user they're in the que...etc.
-
-
-# HOW TO START
-
-- build whole system with mock API then integrate the whole twitter thing after
-
-
-# Tasks
-## Task 1:
-Estimate the processing power need to execute such operations on your computer
-Estimate the maximum number of such operations that can run on your system
-## Task 2:
-Design a module that can queue and process videos and notify the caller when the videos are ready
-Implement the module
+Recommendation for working on the homework:  
+### Step 1:
+Develop a queue system that can exercise your requirements with stub functions.
+### Step 2: 
+Develop the twitter functionality with an API
+### Step 3:
+Integrate them
 Include tracking interface to show how many processes are going on and success of each
 
-# Dependencies
+### Prerequisites
+
+Setup your config /config.py file as shown
+
+```
+TWITTER_API_KEY = XXXXXXXXX
+TWITTER_API_SECRET_KEY = XXXXXXXXXXXXXXXXXX
+TWITTER_ACCESS_TOKEN = XXXXXXXXX
+TWITTER_ACCESS_TOKEN_SECRET = XXXXXXXXXXXXXXXXXXXXXXXXXXX
+```
+
+### Installing
+
+Install requirements
+```
+pip3 install -r requirements.txt
+```
