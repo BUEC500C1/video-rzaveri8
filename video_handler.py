@@ -1,23 +1,17 @@
 import os
-"""
-def convert_images_to_video(image_path, video_id):
-    cmd = ["ffmpeg", "-hide_banner", "-loglevel", "panic",
-           "-f", "image2", "-i", f"{image_path}/tweet%d.png",
-           "-preset", "ultrafast",
-           "-r", "1/3", "-y", f"./videos/{video_id}.ogg"]
-    p = Popen(cmd)
-    p.communicate()
- """
+from image_handler import check_dir
+def make_dir_video(screen_name):
+    # create directories for images.
+    check_dir(os.getcwd()+ "/MyVids")
+    path = os.getcwd()+ "/MyVids"
+    check_dir(path)
+    path = path + '/'
+    check_dir(path)
+    return path
 
 def convert_images_to_video(image_path, screen_name):
-    cmd = 'ffmpeg -start_number n -i' +image_path+' test_%d.jpg -vcodec mpeg4 test.avi'
+    vidpath = make_dir_video(screen_name)
 
-
-   # cmd = 'ffmpeg -framerate 5 -i'+image_path+'/tweet%d.png myvideo.mp4'
-
-    #cmd = 'ffmpeg
-    #  -r 1 -i '+image_path+'tweet%d.png -vcodec mpeg4 -y /'+screen_name+'.mp4'
+    cmd = "ffmpeg -r 1/3 -f image2 -s 174x300 -i " +image_path+ "tweet%d.png -vcodec libx264 -crf 25  -pix_fmt yuv420p "+vidpath+screen_name+".mp4"
     os.system(cmd)
 
-
-#ffmpeg -framerate 5 -i img-%02d.png myvideo.mp4

@@ -7,10 +7,13 @@ from image_handler import getImage
 from image_handler import tweet_video
 from image_handler import make_dir
 
-user = get_screen_name("Buzzfeed")
+user = get_screen_name("NPR")
 all = all_tweets(user)
 path = make_dir(user)
-tweet_video(all, user)
+tweet_video(all,user)
 convert_images_to_video(path, user)
+
+
+
 
 
