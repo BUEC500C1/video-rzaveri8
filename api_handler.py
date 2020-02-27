@@ -1,39 +1,49 @@
-import flask 
-from flask import Flask, redirect, request
-import requests
+from flask import Flask, redirect, request, send_file, render_template
+import os.path
+import os
+import signal
+import threading
+from multiprocessing.pool import ThreadPool
+from twitter_handler import get_screen_name,all_tweets
+from video_handler import image2vid, make_dir_video
+from image_handler import check_dir
+from image_handler import format_tweet_text, getImage,tweet_video,make_dir
 
+import globals
 
-app = flask.Flask(__name__)
-app.config["DEBUG"] = True
+app = Flask(__name__)
 
+@app.route('/status', methods=['GET'])
+def status():
+    return render_template('status.html', calls = globals.processes)
 
-@app.route('/', methods=['GET'])
-def home():
-    return "<h1>EC500 HW#4t</h1><p>by Ruby Zaveri</p><p>Making a twitter video</p>"
-
-@app.route('/tweets/', methods=['GET'])
-def twitter_username():
-
-    # default user name if none provided
-    name = "NatGeo"
-
-    if 'username' in request.args:
-        name = request.args['username']
- 
+@app.route('/video/<name>')
+def watchVideo(name):
+    vid_path = make_dir_video(name)
+    #clean_old()
     call = {
         "user_name": name,
-        "id": id,
+        "id": globals.id,
         "status": "queued"
     }
-    ident = str(id)
-    id += 1
+    vid_id = str(globals.id)
+    globals.id = globals.id +1
 
-    # adds to dict of all process requests
-    processes[ident] = call
+    globals.processes[vid_id] = call
+    globals.q.put(call)
+    globals.q.join()
+    return send_file(vid_path + name+".mp4")
 
-    # adds to worker queue to be completed
-    q.put(call)
-
-    q.join()
-
-    return send_completed_video(ident)
+if __name__ == '__main__':
+    globals.init()
+    globals.q.join()
+    threads = []
+    for i in range (globals.max_threads):
+        worker = threading.Thread(target=all_tweets)
+        worker.setDaemon(True)
+        threads.append(worker)
+    for t in threads:
+        t.start()    
+    #watchVideo(user)
+    app.run(debug=True)
+   

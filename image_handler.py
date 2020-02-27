@@ -12,6 +12,11 @@ import math
 from PIL import Image
 from PIL import ImageDraw
 from io import BytesIO
+import threading
+from multiprocessing import Queue, current_process
+
+
+
 
 def format_tweet_text(text):
     # if full text is longer than 25 characters, add a new line so it wraps
@@ -29,7 +34,7 @@ def getImage(tweet, image):
     photo = Image.open(BytesIO(bytes.content))
     image.paste(photo, (10, 130))
 
-def tweet_video(all_tweets, screen_name): #DOES NOT CHECK FOR IMAGES & CHANGE THIS - SIZE FOR IMAGES>..
+def tweet_video(all_tweets, screen_name, vid_id): #DOES NOT CHECK FOR IMAGES & CHANGE THIS - SIZE FOR IMAGES>..
     index = 0
     for tweet in all_tweets:
         path = make_dir(screen_name)
@@ -51,7 +56,7 @@ def check_dir(path): #from https://thispointer.com/how-to-create-a-directory-in-
     try:
         os.mkdir(path)
     except OSError:
-        print ("directory %s already exists" % path)
+        print ("directory %s already exists" % path)  
     else:
         print ("Successfully created the directory %s " % path)
     return True
@@ -64,6 +69,14 @@ def make_dir(screen_name):
     path = path + '/' + screen_name + '/'
     check_dir(path)
     return path
+
+    
+
+      
+
+
+# NEED Function To remove all previous videos etc....
+# if it exists then delete it and recreate it. 
     
 
 
