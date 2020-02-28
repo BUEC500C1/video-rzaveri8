@@ -45,7 +45,17 @@ Run the command
 ```
 python3 api.py
 ```
-Then navigate to http://127.0.0.1:5000/video/'TWITTER HANDLE HERE'
+Then navigate to http://127.0.0.1:5000/video/Tweeter_Handle_Here
 Please make sure to put a twitter handle in the url or you will get an error. 
 
 To track the progress of the API calls please go to http://127.0.0.1:5000/status
+
+
+### Tests
+
+To test the program run
+
+```
+pytest test_code.py
+```
+If you do not have a keys file the tests will not run as they test api outputs. 
