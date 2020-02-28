@@ -52,6 +52,13 @@ def test_tweet_video():
             assert 1==1
         else:
             assert 1==0            
+def test_no_tweets():
+    if iskey:
+        all_tweets = all_tweets_test("rzaveri8")
+        length = len(all_tweets)
+        assert length!=0 
+    else:
+        assert 1==1   
 
 
 

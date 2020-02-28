@@ -30,7 +30,10 @@ def get_screen_name(screen_name):
     return screen_name
 
 def all_tweets_test(screen_name):
-    new_tweets = api.user_timeline(screen_name = screen_name,count=200, tweet_mode = "extended")
+    try:
+        new_tweets = api.user_timeline(screen_name = screen_name,count=200, tweet_mode = "extended")
+    except:
+        return 0
     return new_tweets
 
 def all_tweets():
