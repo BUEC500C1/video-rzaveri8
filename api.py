@@ -32,10 +32,11 @@ def watchVideo(name):
     globals.processes[vid_id] = call
     globals.q.put(call)
     globals.q.join()
+    if not os.path.isfile(os.getcwd() +'/MyVids'+ name):
+        return {"Error" : "Video still Processing"} 
     return send_file(vid_path + name+".mp4")
 
 if __name__ == '__main__':
-    #delete_old()
     globals.init()
     globals.q.join()
     threads = []
@@ -44,7 +45,8 @@ if __name__ == '__main__':
         worker.setDaemon(True)
         threads.append(worker)
     for t in threads:
-        t.start()    
+        t.start()  
+     
     #watchVideo(user)
     app.run(debug=True)
    
