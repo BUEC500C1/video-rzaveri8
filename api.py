@@ -32,8 +32,8 @@ def watchVideo(name):
     globals.processes[vid_id] = call
     globals.q.put(call)
     globals.q.join()
-    if not os.path.isfile(os.getcwd() +'/MyVids'+ name):
-        return {"Error" : "Video still Processing"} 
+    if not os.path.isfile(os.getcwd() +'/MyImages/'+ name+ "/tweet0.png"):
+        return {"Error" : "User has no Tweets from today"} 
     return send_file(vid_path + name+".mp4")
 
 if __name__ == '__main__':
