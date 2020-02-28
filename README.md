@@ -39,3 +39,13 @@ Install requirements
 ```
 pip3 install -r requirements.txt
 ```
+
+### Running the Program
+Run the command
+```
+python3 api.py
+```
+Then navigate to http://127.0.0.1:5000/video/'TWITTER HANDLE HERE'
+Please make sure to put a twitter handle in the url or you will get an error. 
+
+To track the progress of the API calls please go to http://127.0.0.1:5000/status
