@@ -11,7 +11,7 @@ def work_dispatcher(process_pool):
     while True:
         video_id, user = work_queue.get()
         path = make_dir_video(user)
-        print("Got work")
+        print("working")
         process_pool.apply_async(image2vid, args=(video_id, path, user))
 
 def make_dir_video(screen_name):

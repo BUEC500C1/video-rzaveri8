@@ -19,23 +19,19 @@ import shutil
 import glob
 
 
-# Consumer keys and access tokens, used for OAuth
-#consumer_key = config.consumer_key()
-#consumer_secret = config.consumer_secret()
-#access_token = config.access_token()
-#access_token_secret = config.access_token_secret()
-
-# OAuth process, using the keys and tokens
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_secret)
 
-# Creation of the actual interface, using authentication
+
 api = tweepy.API(auth)
 
 
 def get_screen_name(screen_name):
     return screen_name
 
+def all_tweets_test(screen_name):
+    new_tweets = api.user_timeline(screen_name = screen_name,count=200, tweet_mode = "extended")
+    return new_tweets
 
 def all_tweets():
     while True:
@@ -55,8 +51,7 @@ def all_tweets():
         globals.processes[str(vid_id)]["status"] = "completed"
         globals.q.task_done()   
 
-# removes all previous tweets, images, and videos
- # removes all previous tweets, images, and videos
+#deletes all video and image files every time it's called. 
 def delete_all():
     vid_files = glob.glob(os.getcwd()+ "/MyVids")
     im_files = glob.glob(os.getcwd()+ "/MyImages")
@@ -66,12 +61,4 @@ def delete_all():
     for file in im_files:
         shutil.rmtree(file)    
 
-
-# cleans all old images out (videos stay)
-
-def delete_old():
-    for call in globals.processes.values():
-        if call["status"] == "completed":
-            im_files = glob.glob(os.getcwd()+ "/MyImages")
-            for file in im_files:
-                shutil.rmtree(file)         
+      

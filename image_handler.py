@@ -18,7 +18,7 @@ from multiprocessing import Queue, current_process
 
 
 def format_tweet_text(text):
-    # if full text is longer than 25 characters, add a new line so it wraps
+    #tweet wrapper function
     if len(text) > 35:
         i = 0
         res = '\n'.join(text[i:i + 35] for i in range(0, len(text), 35))
@@ -33,7 +33,7 @@ def getImage(tweet, image):
     photo = Image.open(BytesIO(bytes.content))
     image.paste(photo, (10, 130))
 
-def tweet_video(all_tweets, screen_name, vid_id): #DOES NOT CHECK FOR IMAGES & CHANGE THIS - SIZE FOR IMAGES>..
+def tweet_video(all_tweets, screen_name, vid_id):
     index = 0
     for tweet in all_tweets:
         path = make_dir(screen_name)

@@ -4,7 +4,7 @@ import os
 import signal
 import threading
 from multiprocessing.pool import ThreadPool
-from twitter_handler import get_screen_name,all_tweets,delete_all,delete_old
+from twitter_handler import get_screen_name,all_tweets,delete_all
 from video_handler import image2vid, make_dir_video
 from image_handler import check_dir, format_tweet_text, getImage,tweet_video,make_dir
 
