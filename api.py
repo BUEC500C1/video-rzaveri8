@@ -36,7 +36,7 @@ def watchVideo(name):
         return {"Error" : "User has no Tweets from today"} 
     return send_file(vid_path + name+".mp4")
 
-if __name__ == '__main__':
+if __name__ == '__main__': #runs all code
     globals.init()
     globals.q.join()
     threads = []
