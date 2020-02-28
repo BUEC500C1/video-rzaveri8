@@ -1,4 +1,0 @@
-tweepy
-ffmpeg
-pillow
-flask

@@ -4,10 +4,9 @@ import os
 import signal
 import threading
 from multiprocessing.pool import ThreadPool
-from twitter_handler import get_screen_name,all_tweets
+from twitter_handler import get_screen_name,all_tweets,delete_all,delete_old
 from video_handler import image2vid, make_dir_video
-from image_handler import check_dir
-from image_handler import format_tweet_text, getImage,tweet_video,make_dir
+from image_handler import check_dir, format_tweet_text, getImage,tweet_video,make_dir
 
 import globals
 
@@ -19,8 +18,9 @@ def status():
 
 @app.route('/video/<name>')
 def watchVideo(name):
+    delete_all()
     vid_path = make_dir_video(name)
-    #clean_old()
+    #delete_all(vid_path)
     call = {
         "user_name": name,
         "id": globals.id,
@@ -35,6 +35,7 @@ def watchVideo(name):
     return send_file(vid_path + name+".mp4")
 
 if __name__ == '__main__':
+    #delete_old()
     globals.init()
     globals.q.join()
     threads = []
