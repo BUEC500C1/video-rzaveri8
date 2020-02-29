@@ -9,7 +9,6 @@ import time
 import json
 import threading,queue
 import globals
-from flask import jsonify, send_file
 import math
 from PIL import Image
 from PIL import ImageDraw
