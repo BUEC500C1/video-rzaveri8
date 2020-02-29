@@ -1,5 +1,5 @@
 import requests
-from keys import consumer_key, consumer_secret, access_secret, access_token
+#from keys import consumer_key, consumer_secret, access_secret, access_token
 import os
 import tweepy
 #import pandas as pd
@@ -22,6 +22,7 @@ isKey = False
 if os.path.isfile(os.getcwd() + "/keys") == True:
     iskey = True
     shutil.copy('keys', 'keys.py')
+    from keys import *
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_secret)
     api = tweepy.API(auth)
