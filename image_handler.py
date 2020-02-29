@@ -6,7 +6,6 @@ import csv
 import datetime
 import time
 import json
-from flask import jsonify
 import math
 from PIL import Image
 from PIL import ImageDraw
