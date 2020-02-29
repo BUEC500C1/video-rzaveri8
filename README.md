@@ -16,6 +16,12 @@ Establish a processing criteria:
 Recommendation for working on the homework:  
 ### Step 1:
 Develop a queue system that can exercise your requirements with stub functions.
+
+This was accomplished by adding each API call to a processing queue. The queue contains a unique id associated with the request. Each process is associated with a single thread that executes requests. The threads all exectue the ```all_tweets``` function, the thread calls form the processing queue and calls other functions that help to transform tweets to videos. 
+
+The ```/video/<name>``` route will return the result of the  ```image2vid``` function. The ```/status ``` route will return the status of each call.
+
+And each call the main directory is wiped using the ```delete_all``` function to prevent duplicates in the system. 
 ### Step 2: 
 Develop the twitter functionality with an API
 ### Step 3:
