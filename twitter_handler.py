@@ -18,12 +18,13 @@ from video_handler import image2vid,make_dir_video
 import shutil
 import glob
 
-
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_secret)
-
-
-api = tweepy.API(auth)
+isKey = False
+if os.path.isfile(os.getcwd() + "/keys") == True:
+    iskey = True
+    shutil.copy('keys', 'keys.py')
+    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token, access_secret)
+    api = tweepy.API(auth)
 
 
 def get_screen_name(screen_name):
