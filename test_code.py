@@ -18,7 +18,7 @@ tweet_flag = False
 if os.path.isfile(os.getcwd() + "/keys") == True:
     iskey = True
     shutil.copy('keys', 'keys.py')
-    from keys import *
+    #from keys import *
 
 #******** BELOW TESTS ONLY WORK IF THERE IS A KEYS FILE*********
     
@@ -27,7 +27,7 @@ def test_all_tweets():
     if iskey:
         all_tweets = all_tweets_test("NPR")
         length = len(all_tweets)
-        tweet_flag = True
+        #tweet_flag = True
         assert length != 0
     else:
         assert 1==1
